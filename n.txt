@@ -1,0 +1,84 @@
+
+    fontSize1 = 250; // Initial font size for text1
+    ctx.font = `${fontSize1}px 'Anek Telugu'`;
+    let textWidth = ctx.measureText(text).width;
+
+    // Decrease font size until the text fits within the canvas width
+    while (textWidth > canvas.width - 1) {
+      fontSize1 -= 1;
+      ctx.font = `${fontSize1}px 'Anek Telugu'`;
+      textWidth = ctx.measureText(text).width;
+    }
+
+    let stretchRatio1;
+ 
+    // Calculate vertical stretch factor for text1
+    if (document.querySelector("#text-input").value.length > 48) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 100; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else if (document.querySelector("#text-input").value.length < 30) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1+15; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else if (document.querySelector("#text-input").value.length > 40) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 40; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 30; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    }
+
+    
+    fontSize1 = 250; // Initial font size for text1
+    ctx.font = `${fontSize1}px 'Anek Telugu'`;
+    let textWidth = ctx.measureText(text).width;
+
+    // Decrease font size until the text fits within the canvas width
+    while (textWidth > canvas.width - 1) {
+      fontSize1 -= 1;
+      ctx.font = `${fontSize1}px 'Anek Telugu'`;
+      textWidth = ctx.measureText(text).width;
+    }
+
+    let stretchRatio1;
+    // Calculate vertical stretch factor for text1
+    if (document.querySelector("#text-input").value.length > 48) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 100; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else if (document.querySelector("#text-input").value.length < 30) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1+15; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else if (document.querySelector("#text-input").value.length > 40) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 40; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 30; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    }
+    ctx.strokeStyle = "black";
+ctx.lineWidth = 10;
+ctx.lineJoin = "round"; // Use round corners for the stroke
+    ctx.save();
+    ctx.translate(positionX1, positionY1);
+    ctx.scale(1, stretchRatio1);
+    ctx.fillStyle = color;
+ctx.strokeText(text, 0, 0);
+    ctx.fillText(text, 0, 0);
+    ctx.restore();
+    const fixedpos = 2400;
+const fixedPositionY = 1070; // Fixed position for text2
+let size2 = 600; // Get the value of sizeRange2
+
+// Calculate the desired height increase factor
+const heightIncreaseFactor = 10; // You can adjust this value as needed
+
+// Calculate the transformation matrix for vertical scaling
+const scaleX = 1;
+const scaleY = 1 + heightIncreaseFactor / 100;

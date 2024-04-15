@@ -1,0 +1,120 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.stretchedText {
+  display: inline-block;
+  white-space: nowrap;
+}
+@font-face {
+  font-family: myFont;
+
+  src: url(bada.otf) format("opentype");
+}
+button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4c9aff;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3275e8;
+}
+
+button:active {
+  background-color: #2357b7;
+}
+
+.my-text {
+  font-size: 24px;
+  line-height: 9; /* Increase this value to adjust the height */
+  display: inline-block;
+}
+.bold-stroke-input {
+  font-weight: bold;
+  font-size: 248px;
+  text-shadow: 0 0 17px #000000;
+}
+
+/* Apply general styles to all input elements */
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Style the input element on focus */
+input:focus {
+  outline: none;
+  border-color: #4c9aff;
+  box-shadow: 0 0 5px rgba(76, 154, 255, 0.5);
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: #4c9aff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Align the submit button to the right */
+input[type="submit"] {
+  float: right;
+}
+
+/* Clear floats */
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text-section {
+  margin-bottom: 5px;
+}
+
+.options-section {
+  margin-bottom: 20px;
+}
+
+.preview-section {
+  margin-bottom: 20px;
+}
+
+.preview-container {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview-canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.download-section {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}

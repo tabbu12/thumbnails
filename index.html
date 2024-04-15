@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Inserting For Image</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/chunkfive" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@800&family=Archivo+Black&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div className="container">
+    <h1>Text Inserting For Image</h1>
+    <div className="download-section">
+      <button style = "margin: auto auto;"id="download-button" disabled>Download Image</button>
+    </div>
+   
+    <div class="container">
+    <input label = "var 1"type="text" name="" id="var1" onchange="var1change()"></input>
+  
+    <input type="text" label = "var 2"onchange="var2change()"id="var2" ></input>
+    
+    <input type="text"label = "var 3" id="var3"onchange="var3change()" ></input>
+
+    <input type="text"label = "var 4" id="var4" onchange="var4change()"></input>
+    <br>
+    <input type="text" id="text1" style="width: 500px; margin-top: 5px;" onchange="text1()"></input>
+    <input type="text" id="text2"style="width: 500px; display: inline;" onchange="text2()"></input>
+    <input type="text" id="text3"style="width: 500px;" onchange="text3()"></input>
+    <input type="text" id="text4"style="width: 500px;" onchange="text4()"></input>
+   
+  </div>
+    <div className="text-section">
+      <label htmlFor="text-input2">Enter text 2:</label>
+      <input type="text"  id="text-input2" style="font-family: 'Anek Telugu', sans-serif;">
+    </div>
+  
+    <div className="options-section">
+      <label htmlFor="color-select">Select color:</label>
+      <input type="color" id="color-select" value="#ffffff">
+      <label htmlFor="size-range-1">Adjust size (Text 1):</label>
+      <input type="range" id="size-range-1"   step="1">
+      <label htmlFor="size-range-2">Adjust size (Text 2):</label>
+      <input type="range" id="size-range-2" min="300" max="100" step="1">
+      <label htmlFor="position-range-x">Adjust position X (Text 1):</label>
+      <input type="range" id="position-range-x" min="0" max="800" step="1">
+      <label htmlFor="position-range-y">Adjust position Y (Text 1):</label>
+      <input type="range" id="position-range-y" min="0" max="600" step="1">
+      <label htmlFor="position-range-x2">Adjust position X (Text 2):</label>
+      <input type="range" id="position-range-x2" min="0" max="800" step="1">
+      <label htmlFor="position-range-y2">Adjust position Y (Text 2):</label>
+      <input type="range" id="position-range-y2" min="0" max="600" step="1">
+     
+
+      
+    </div>
+    <div className="preview-section">
+      <h2>Preview:</h2>
+      <div id="preview-container">
+        <canvas id="preview-canvas"></canvas>
+      </div>
+      
+    </div>
+    <div className="text-section">
+      <label htmlFor="text-input">Enter text 1:</label>
+      <input type="text" className="stretchedText" id="text-input"className="text-input"  style="font-family: 'Anek Telugu', sans-serif; width: 10px;">
+    </div>      
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

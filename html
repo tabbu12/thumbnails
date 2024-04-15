@@ -1,0 +1,388 @@
+window.addEventListener("DOMContentLoaded", () => {
+ 
+  const today = new Date();
+  let tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 2);
+
+  let dayOfWeekIndex = tomorrow.getDay();
+  let dayOfWeekArray = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday"
+  ];
+
+  
+
+  let monthIndex = tomorrow.getMonth();
+  let monthArray = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
+  ];
+ 
+  let dayname = dayOfWeekArray[dayOfWeekIndex];
+  let monthname = monthArray[monthIndex];
+  let datenumber = tomorrow.getDate().toString().padStart(2, "0");
+
+  const textInput = document.getElementById("text-input");
+  const textInput2 = document.getElementById("text-input2");
+  const fontSelect = document.getElementById("text-input");
+  const colorSelect = document.getElementById("color-select");
+  const sizeRange1 = document.getElementById("size-range-1");
+  const sizeRange2 = document.getElementById("size-range-2");
+  const positionRangeX = document.getElementById("position-range-x");
+  const previewContainer = document.getElementById("preview-container");
+  const previewCanvas = document.getElementById("preview-canvas");
+  const downloadButton = document.getElementById("download-button");
+textInput2.value = datenumber;
+
+
+  let currentImage = null;
+  let previewImage = null;
+  let fontSize1;
+  // Load default image
+  const defaultImage = new Image();
+  //!
+
+ 
+    textInput.value = var1;
+    defaultImage.src  = "kumbha rftt.jpg" 
+
+
+  
+  
+  
+  
+  defaultImage.onload = () => {
+    currentImage = defaultImage;
+    updatePreview();
+  };
+
+  textInput.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  textInput2.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  fontSelect.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  colorSelect.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  sizeRange1.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  sizeRange2.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  positionRangeX.addEventListener("input", () => {
+    updatePreview();
+  });
+
+  function updatePreview() {
+    if (!currentImage) return;
+
+    const text = textInput.value;
+    const text2 = textInput2.value;
+    const color = "white"; // Set text2 color to white
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const image = currentImage;
+
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    ctx.drawImage(image, 0, 0);
+
+    const positionX1 = 10; // Fixed X-coordinate for text1 (leftmost position)
+    const positionY1 = 1730; // Fixed Y-coordinate for text1 (bottom - 600 pixels up)
+
+    fontSize1 = 250; // Initial font size for text1
+    ctx.font = `${fontSize1}px 'Anek Telugu'`;
+    let textWidth = ctx.measureText(text).width;
+
+    // Decrease font size until the text fits within the canvas width
+    while (textWidth > canvas.width - 1) {
+      fontSize1 -= 1;
+      ctx.font = `${fontSize1}px 'Anek Telugu'`;
+      textWidth = ctx.measureText(text).width;
+    }
+
+    let stretchRatio1;
+    // Calculate vertical stretch factor for text1
+    if (document.querySelector("#text-input").value.length > 48) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 100; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else if (document.querySelector("#text-input").value.length < 30) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1+30; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else if (document.querySelector("#text-input").value.length > 40) {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 40; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    } else {
+      const originalHeight1 = fontSize1;
+      const targetHeight1 = originalHeight1 + 30; // Vertical stretch factor, adjust as needed
+      stretchRatio1 = targetHeight1 / originalHeight1;
+    }
+    ctx.strokeStyle = "black";
+ctx.lineWidth = 10;
+ctx.lineJoin = "round"; // Use round corners for the stroke
+    ctx.save();
+    ctx.translate(positionX1, positionY1);
+    ctx.scale(1, stretchRatio1);
+    ctx.fillStyle = color;
+ctx.strokeText(text, 0, 0);
+    ctx.fillText(text, 0, 0);
+    ctx.restore();
+    const fixedpos = 2400;
+    const fixedPositionY = 1100; // Fixed position for text2
+    let size2 =700; // Get the value of sizeRange2
+    ctx.font = `${size2}px 'Anek Telugu', sans-serif`;
+    ctx.fillStyle = "white"; // Set text2 color to white
+    // Add border to text 2
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 40;
+    ctx.strokeText(text2, fixedpos, fixedPositionY);
+    ctx.fillText(text2, fixedpos, fixedPositionY); 
+   let month = monthname;
+    let day = dayname;
+    // Add new element (PNG) in the middle of the canvas
+    let middleX;
+    let middleY;
+    const pngElement = new Image();
+    pngElement.src = `${month}.png`;
+    if(`${pngElement.src}`.includes("june.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1700;
+      middleY =900;
+    pngElement.onload = () => {
+      const pngWidth = 4000; // Width of the PNG element
+      const pngHeight = 1800; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);
+    }
+    }
+    else if(`${pngElement.src}`.includes("march.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1800;
+      middleY =830;
+    pngElement.onload = () => {
+      const pngWidth = 3500; // Width of the PNG element
+      const pngHeight = 1800; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("april.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =2050;
+      middleY =830;
+    pngElement.onload = () => {
+      const pngWidth = 3500; // Width of the PNG element
+      const pngHeight = 1850; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("may.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =2050;
+      middleY =870;
+    pngElement.onload = () => {
+      const pngWidth = 3500; // Width of the PNG element
+      const pngHeight = 2000; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("july.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =2050;
+      middleY =830;
+    pngElement.onload = () => {
+      const pngWidth = 4150; // Width of the PNG element
+      const pngHeight = 2000; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("august.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =2090;
+      middleY =780;
+    pngElement.onload = () => {
+      const pngWidth = 3250; // Width of the PNG element
+      const pngHeight = 2000; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+
+    else if(`${pngElement.src}`.includes("september.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1890;
+      middleY =980;
+    pngElement.onload = () => {
+      const pngWidth = 2600; // Width of the PNG element
+      const pngHeight = 2500; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("october.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =2090;
+      middleY =900;
+    pngElement.onload = () => {
+      const pngWidth = 3300; // Width of the PNG element
+      const pngHeight = 3000; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+
+
+    else if(`${pngElement.src}`.includes("november.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1900;
+      middleY =900;
+    pngElement.onload = () => {
+      const pngWidth = 2500; // Width of the PNG element
+      const pngHeight = 2500; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("december.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1950;
+      middleY =820;
+    pngElement.onload = () => {
+      const pngWidth = 2500; // Width of the PNG element
+      const pngHeight = 2200; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else if(`${pngElement.src}`.includes("january.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1900;
+      middleY =900;
+    pngElement.onload = () => {
+      const pngWidth = 3000; // Width of the PNG element
+      const pngHeight =2500; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+
+    else if(`${pngElement.src}`.includes("febrauary.png")&& `${defaultImage.src}`.includes("simha")){
+      middleX =1850;
+      middleY =830;
+    pngElement.onload = () => {
+      const pngWidth = 2800; // Width of the PNG element
+      const pngHeight =2000; // Height of the PNG element
+      ctx.drawImage(pngElement, middleX - pngWidth / 2, middleY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+
+
+
+
+
+
+
+
+
+
+    // Add new element (PNG) in the middle of the canvas
+    let middlesX ;
+    let middlesY;
+    const pngElements = new Image();
+    pngElements.src = `${day}.png`;
+    if(`${pngElements.src}`.includes("friday.png")){
+      middlesX =1700;
+      middlesY =940;
+    pngElements.onload = () => {
+      const pngWidth = 3000; // Width of the PNG element
+      const pngHeight = 1800; // Height of the PNG element
+      ctx.drawImage(pngElements, middlesX - pngWidth / 2, middlesY - pngHeight / 2, pngWidth, pngHeight);
+      // Call the function to update the preview
+      updatePreviewCanvas(image);}
+    }
+    else{
+      middlesX =1700;
+      middlesY =900;
+      pngElements.onload = () => {
+        const pngWidth = 3000; // Width of the PNG element
+        const pngHeight = 1800; // Height of the PNG element
+        ctx.drawImage(pngElements, middlesX - pngWidth / 2, middlesY - pngHeight / 2, pngWidth, pngHeight);
+        // Call the function to update the preview
+        updatePreviewCanvas(image);}
+    }
+
+
+
+
+
+
+
+
+    function updatePreviewCanvas(image) {
+      previewCanvas.width = previewContainer.clientWidth;
+      previewCanvas.height = (previewContainer.clientWidth / image.width) * image.height;
+
+      const scaleFactor = calculateScaleFactor(
+        image.width,
+        image.height,
+        previewCanvas.width,
+        previewCanvas.height
+      );
+      const previewCtx = previewCanvas.getContext("2d");
+      previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+      previewCtx.drawImage(canvas, 0, 0, previewCanvas.width, previewCanvas.height);
+
+      // Store the preview image separately
+      previewImage = canvas.toDataURL();
+
+      downloadButton.disabled = false;
+    }
+  }
+ 
+
+  function calculateScaleFactor(originalWidth, originalHeight, maxWidth, maxHeight) {
+    const widthScaleFactor = originalWidth / maxWidth;
+    const heightScaleFactor = originalHeight / maxHeight;
+
+    return Math.max(widthScaleFactor, heightScaleFactor, 1);
+  }
+
+  downloadButton.addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.download = "image";
+    link.href = previewImage; // Use the preview image data URL
+    link.click();
+  });
+let funk = ()=>{
+  const link = document.createElement("a");
+    link.download = "image";
+    link.href = previewImage; // Use the preview image data URL
+    link.click();
+}
+
+});
